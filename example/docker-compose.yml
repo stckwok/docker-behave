@@ -1,0 +1,8 @@
+version: '2'
+services:
+  behave:
+    image: williamyeh/behave
+    network_mode: "host"
+    shm_size: 256m
+    volumes:
+      - .:/behave

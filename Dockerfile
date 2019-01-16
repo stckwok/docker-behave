@@ -1,6 +1,6 @@
 # Docker image for behave and other Python-based SBE/BDD tools.
 #
-# URL: https://github.com/William-Yeh/docker-behave
+# URL: https://github.com/stckwok/docker-behave
 #
 # References: 
 #   - https://eshlox.net/2016/11/22/dockerize-behave-selenium-tests/
@@ -16,7 +16,7 @@
 # pull base image
 FROM python:3.6-slim-stretch
 
-MAINTAINER William Yeh <william.pjyeh@gmail.com>
+MAINTAINER Sam Kwok <s.kwok@nchain.com>
 
 ENV CHROME_DRIVER_VERSION 2.42
 ENV CHROME_DRIVER_TARBALL http://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
