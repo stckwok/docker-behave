@@ -2,12 +2,9 @@ Docker image for Python-based SBE/BDD tools
 ===
 
 
-[![Circle CI](https://circleci.com/gh/William-Yeh/docker-behave.svg?style=shield)](https://circleci.com/gh/William-Yeh/docker-behave) [![Build Status](https://travis-ci.org/William-Yeh/docker-behave.svg?branch=master)](https://travis-ci.org/William-Yeh/docker-behave)
-
-
 ## Summary
 
-Repository name in Docker Hub: **[williamyeh/behave](https://hub.docker.com/r/williamyeh/behave/)**
+Repository name in Docker Hub: **[stckwok/behave](https://hub.docker.com/r/stckwok/behave/)**
 
 This repository contains Dockerized Python tools for SBE/BDD, published to the public [Docker Hub](https://hub.docker.com/) via **automated build** mechanism.
 
@@ -73,87 +70,15 @@ Took 0m11.532s
 Note: `requirements.txt` in `features` directory.
 
 
-## Run with browser in headless mode
+## Run 
 
-This is the default mode.  All are done within the Docker container.
-
-
-## Run with desktop's browser
-
-To run with the desktop's browser, please follow the steps.
-
-```
-+---------------------------------------------------------+
-|                                                         |
-|                                                 host    |
-|   +----------------+                                    |
-|   |     Docker     |                                    |
-|   |                |                                    |
-|   |                |                                    |
-|   |                |                                    |
-|   |                |                                    |
-|   |    container   |                        Chrome      |
-|   |        |       |      ChromeDriver      browser     |
-|   +----------------+       |        |          |        |
-|            |               |        |          |        |
-|            +---------------+        +----------+        |
-|                    /wd/hub:9515                         |
-|                                                         |
-+---------------------------------------------------------+
-```
-
-
-### Requirements for host environment
-
-1. Install [Chrome](https://www.google.com.tw/chrome/browser/desktop/).
-
-2. Install [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/). Mac users can install it as follows:
-
-   ```
-   $ brew install chromedriver
-   ```
-
-
-### Configuration
-
-Configure `features/environment.py` as follows:
-
-```python
-# import useful functions
-from environment_common import init_selenium_chrome_driver
-from environment_common import use_headless_mode
-from environment_common import set_remote_chrome_addr
-...
-
-
-# invoke them, if necessary
-use_headless_mode(False)
-...
-
-
-# customize hooks, if necessary
-
-def before_all(context):
-    ...
-```
-
-
-### Run
-
-1. Start the ChromeDriver with base URL path `/wd/hub` and default port `9515`:
-
-   ```
-   $ chromedriver --url-base=/wd/hub
-   ```
-
-2. Now you're ready to run `williamyeh/behave`!
+sk1@sk1-VirtualBox:~/bdd/docker-behave/example$ ./run-test.sh 
 
 
 ## TODO
 
-1. Detailed document.
-2. Firefox?
-3. Flow with Jenkins.
+1. Update document
+2. Flow with Jenkins
 
 
 
@@ -161,27 +86,5 @@ def before_all(context):
 
 *Behave*
 
- - [Behave tutorial](https://pythonhosted.org/behave/tutorial.html)
+ - [Behave tutorial](https://jenisys.github.io/behave.example/tutorials/index.html)
 
-
-*Selenium*
-
-- https://intoli.com/blog/running-selenium-with-headless-chrome/
-
-
-*Elementium*
-
-
-
-
-
-*Capybara*
-
-
-
-
-## License
-
-Author: William Yeh <william.pjyeh@gmail.com>
-
-Licensed under the Apache License V2.0. See the [LICENSE file](LICENSE) for details.
