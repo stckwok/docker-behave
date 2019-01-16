@@ -1,4 +1,4 @@
-# Docker image for behave and other Python-based SBE/BDD tools.
+# Docker image for behave and other Python-based BDD tools.
 #
 # URL: https://github.com/stckwok/docker-behave
 #
@@ -16,13 +16,10 @@
 # pull base image
 FROM python:3.6-slim-stretch
 
-MAINTAINER Sam Kwok <s.kwok@nchain.com>
-
-ENV CHROME_DRIVER_VERSION 2.42
-ENV CHROME_DRIVER_TARBALL http://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
+MAINTAINER Sam Kwok <stckwok@hotmail.com>
 
 RUN \
-    echo "==> Install common stuff missing from the slim base image..."   && \
+    echo "==> Install common packages missing from the slim base image..."   && \
     apt-get update            && \
     apt-get install -y --no-install-recommends \
         gnupg   \
@@ -32,12 +29,7 @@ RUN \
         rm -rf /var/lib/apt/lists/*   && \
     \
     \
-    echo "==> Add Google repo for Chrome..."   && \
-    wget -q -O- https://dl.google.com/linux/linux_signing_key.pub | apt-key add -  && \
-    echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google.list  && \
-    \
-    \
-    echo "==> Install prerequisite stuff..."   && \
+    echo "==> Install prerequisite packages..."   && \
     apt-get update            && \
     apt-get install -y --no-install-recommends \
         python3-dev              \
@@ -47,18 +39,10 @@ RUN \
         libfreetype6             \
         xfonts-scalable          \
         fonts-liberation         \
-        fonts-noto-cjk           \
-        google-chrome-stable  && \
+        fonts-noto-cjk       &&  \
     \
     \
-    echo "==> Install ChromeDriver..."   && \
-    wget -qO- $CHROME_DRIVER_TARBALL | zcat > /usr/local/bin/chromedriver  && \
-    chown root:root /usr/local/bin/chromedriver  && \
-    chmod 0755 /usr/local/bin/chromedriver       && \
-    \
-    \
-    \
-    echo "==> Install useful Python stuff..."   && \
+    echo "==> Install useful Python packages..."   && \
     pip3 install --no-cache-dir \
         requests                \
         unittest-xml-reporting  \
@@ -68,7 +52,7 @@ RUN \
                                 && \
     \
     \
-    echo "==> Install behave and related stuff..."   && \
+    echo "==> Install behave and related packages..."   && \
     pip3 install --no-cache-dir \
         behave                  \
         selenium                \
@@ -80,8 +64,6 @@ RUN \
     echo "==> Clean up..."      && \
     rm -rf /var/lib/apt/lists/*
 
-
-ENV PATH /usr/lib/chromium/:$PATH
 
 WORKDIR    /behave
 ENV        REQUIREMENTS_PATH  /behave/features/steps/requirements.txt

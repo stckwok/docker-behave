@@ -19,8 +19,6 @@ This docker image contains the following software stack:
 
 - [Selenium WebDriver](http://www.seleniumhq.org/projects/webdriver/): a suite of tools to automate web browsers across many platforms.
 
-- [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/): a standalone server which implements WebDriver's wire protocol for Chromium.
-
 - Selenium wrapper for Python:
   - [Elementium](https://github.com/actmd/elementium): jQuery-style syntactic sugar for Selenium.
   - [Capybara](https://elliterate.github.io/capybara.py/): a port of [Capybara from Ruby](https://en.wikipedia.org/wiki/Capybara_(software)).
@@ -52,7 +50,7 @@ This docker image contains the following software stack:
 **When** I invoke the program as follows:
 
 ```
-$ docker run -it --rm -v "$(pwd):/behave:ro"  williamyeh/behave
+$ docker run -it --rm -v "$(pwd):/behave:ro"  stckwok/docker-behave
 ```
 
 **Then** I can see the output as follows:
@@ -61,9 +59,9 @@ $ docker run -it --rm -v "$(pwd):/behave:ro"  williamyeh/behave
 Feature: ...
 [...]
 1 feature passed, 0 failed, 0 skipped
-7 scenarios passed, 0 failed, 0 skipped
-21 steps passed, 0 failed, 0 skipped, 0 undefined
-Took 0m11.532s
+1 scenarios passed, 0 failed, 0 skipped
+3 steps passed, 0 failed, 0 skipped, 0 undefined
+Took 0m0.001s
 ```
 
 
